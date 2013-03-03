@@ -1,0 +1,57 @@
+<html>
+<head>
+    <style>
+        #result div {
+            padding-left:10px;
+            text-align: left;
+            float:left;
+        }
+        input{
+            width: 60px;
+        }
+        #result{
+            padding-top: 50px;
+        }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="jquery.namegenerator.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#generate").click(function () {
+                $("#result").html("<hr>");
+                var max = parseInt($("input[name=max]").val());
+                var min = parseInt($("input[name=min]").val());
+                var prefix = $("input[name=prefix]").val();
+                var suffix = $("input[name=suffix]").val();
+                for (var i = 1; i < 51; i++) {
+                    var name = $.nameGenerator(min, max, prefix, suffix);
+                    $("#result").append($("<div></div>").text(name).css("width", max * 11));
+                    if (i % 10 == 0) {
+                        $("#result").append("<br/>");
+                    }
+                }
+                $("#result").append("<hr>");
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<h3>jquery.nameGenerator.js</h3>
+<label>Min lenght :</label>
+<input name="min" type="text" value="3"/>
+<label>Max lenght :</label>
+<input name="max" type="text" value="8"/>
+<label>Prefix :</label>
+<input name="prefix" type="text"/>
+<label>Suffix :</label>
+<input name="suffix" type="text"/>
+<button id="generate">Generate</button>
+
+<div id="result"></div>
+</body>
+</html>
