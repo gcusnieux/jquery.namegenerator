@@ -25,12 +25,15 @@
                 var min = parseInt($("input[name=min]").val());
                 var prefix = $("input[name=prefix]").val();
                 var suffix = $("input[name=suffix]").val();
-                for (var i = 1; i < 51; i++) {
+                for (var i = 1; i < 21; i++) {
                     var name = $.nameGenerator(min, max, prefix, suffix);
-                    $("#result").append($("<div></div>").text(name).css("width", max * 11));
-                    if (i % 10 == 0) {
-                        $("#result").append("<br/>");
-                    }
+                    var f = $.nameGenerator(min, max, prefix, suffix);
+                    var company = "Exeat";
+                    var mail = name.toLowerCase() + "." + f.toLowerCase()+ "@" + company.toLowerCase().replace(/\s/g, "-") + ".com";
+                    var num = "06xxxxxxxx";
+
+                    $("#result").append($("<div></div>").text([name,f,company,mail,num].join(";")));
+                    $("#result").append("<br/>");
                 }
                 $("#result").append("<hr>");
 
@@ -52,6 +55,8 @@
 <input name="suffix" type="text"/>
 <button id="generate">Generate</button>
 
-<div id="result"></div>
+<div id="result">
+
+</div>
 </body>
 </html>
